@@ -1,10 +1,11 @@
 .header{
     height: 34vw;
     margin: 30px auto;
-    background: url('/header_img.png') no-repeat;
-    background-size: contain;
+    background-image: url(img_header.png);
+    background-position: center;
     position: relative;
-}
+    overflow: hidden; /* Prevent content overflow */
+ }
 
 .header-contents{
     position: absolute;
@@ -19,22 +20,63 @@
 }
 
 .header-contents h2{
-    font-size: 500;
-    color: rgb(255, 255, 255);
+    font-weight: 900;
+    color:rgb(130, 48, 0);
     font-size: max(4.5vw, 22px);
+    background-color: rgba(255, 255, 255, 0.9); /* Add a white background with transparency */
+    border-radius: 100px;
 }
 
 .header-contents p{
-    color: white;
-    font-size: 1vw;
+    color:rgb(217, 91, 19);
+    font-size: 20px;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.9); /* Add a white background with transparency */
 }
 
 .header-contents button{
     border: none;
-    color: #747474;
+    color: black;
     padding: 1vw 2.3vw;
-    font-weight: 500;
-    background-color: white;
+    font-weight: 700;
+    background-color: tomato;
     font-size: max(1vw, 13px);
     border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-contents button:hover {
+    background-color: darkred; /* Change color on hover */
+    color: white;
+}
+
+@media (max-width: 1050px) {
+    .header-contents {
+        max-width: 65%; /* Increase content width on smaller screens */
+        gap: 2vw; /* Adjust spacing */
+    }
+
+    .header-contents h2 {
+        font-size: max(4vw, 20px); /* Reduce font size */
+    }
+
+    .header-contents p {
+        font-size: max(1.5vw, 14px); /* Adjust paragraph font size */
+    }
+}
+
+@media (max-width: 750px) {
+    .header-contents {
+        max-width: 85%; /* Increase width on even smaller screens */
+        gap: 3vw; /* Adjust spacing */
+    }
+
+    .header-contents h2 {
+        font-size: max(3.5vw, 18px); /* Reduce font size further */
+    }
+
+    .header-contents p {
+        font-size: max(1.2vw, 12px); /* Adjust paragraph font size further */
+    }
 }
