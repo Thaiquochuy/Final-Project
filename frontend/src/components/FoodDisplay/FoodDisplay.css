@@ -78,11 +78,27 @@
     margin-bottom: 10px;
     text-align: start;
   }
-  
-  .food-modal-details input {
-    padding: 8px;
-    width: 50px;
-    font-size: 1rem;
-    margin-top: 10px;
+
+  .food-item-counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   
+  .food-item-counter img {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+  }
+
+  .food-modal-counter{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .food-modal-quantity{
+    display: flex;
+    align-items: self-end;
+    gap: 10px;
+  }

@@ -1,6 +1,9 @@
 import './Header.css';
+import React, { useState } from 'react';
 
 const Header = () => {
+	const [Menu, setMenu] = useState('Home');
+
 	return (
 		<div className='header'>
 			<div className='header-contents'>
@@ -11,7 +14,15 @@ const Header = () => {
 					mission is to satisfy your cravings and elevate your dining
 					experience, one delicious meal at a time
 				</p>
-				<button>View Menu</button>
+				<button>
+					<a
+						href='#explore-menu'
+						onClick={() => setMenu('Menu')}
+						className={Menu === 'Menu' ? 'active' : ''}
+					>
+						View Menu
+					</a>
+				</button>
 			</div>
 		</div>
 	);

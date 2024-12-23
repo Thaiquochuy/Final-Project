@@ -31,13 +31,6 @@ const Navbar = ({ setShowLogin }) => {
 					Menu
 				</a>
 				<a
-					href='#app-download'
-					onClick={() => setMenu('About Us')}
-					className={Menu === 'About Us' ? 'active' : ''}
-				>
-					About Us
-				</a>
-				<a
 					href='#footer'
 					onClick={() => setMenu('Contact-us')}
 					className={Menu === 'Contact-us' ? 'active' : ''}
