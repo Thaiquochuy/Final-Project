@@ -26,7 +26,7 @@ const Cart = () => {
 				{food_list.map((item, index) => {
 					if (cartItems[item._id] > 0) {
 						return (
-							<div>
+							<div key={item._id}>
 								<div className='cart-items-title cart-items-item'>
 									<img src={url+"/images/"+item.image} alt='' />
 									<p key={index}>{item.name}</p>
@@ -40,6 +40,8 @@ const Cart = () => {
 								<hr />
 							</div>
 						);
+					}else{
+						return null;
 					}
 				})}
 			</div>
@@ -54,7 +56,7 @@ const Cart = () => {
 						<hr />
 						<div className='cart-total-details'>
 							<p>Delivery Fee</p>
-							<p>${getTotalCartAmount()===0?0:5}</p>
+							<p>${getTotalCartAmount()===0?0:2}</p>
 						</div>
 						<hr />
 						<div className='cart-total-details'>

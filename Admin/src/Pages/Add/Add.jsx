@@ -39,7 +39,7 @@ const Add = ({ url }) => {
 			setImage(false);
 			toast.success(response.data.message);
 		} else {
-			toast.error('Lỗi khi thêm sản phẩm');
+			toast.error('Error adding product');
 		}
 	};
 
@@ -47,7 +47,7 @@ const Add = ({ url }) => {
 		<div className='add'>
 			<form className='flex-col' onSubmit={onSubmitHandler}>
 				<div className='add-img-upload flex-col'>
-					<p>Tải ảnh lên</p>
+					<p>Upload Image</p>
 					<label htmlFor='image'>
 						<img
 							src={image ? URL.createObjectURL(image) : assets.upload_area}
@@ -63,53 +63,53 @@ const Add = ({ url }) => {
 					/>
 				</div>
 				<div className='add-product-name flex-col'>
-					<p>Tên sản phẩm</p>
+					<p>Product Name</p>
 					<input
 						onChange={onChangeHandler}
 						value={data.name}
 						type='text'
 						name='name'
-						placeholder='Thêm tên'
+						placeholder='Add name'
 					/>
 				</div>
 				<div className='add-product-description flex-col'>
-					<p>Mô tả sản phẩm</p>
+					<p>Product Description</p>
 					<textarea
 						onChange={onChangeHandler}
 						value={data.description}
 						name='description'
 						rows='6'
-						placeholder='Thêm mô tả'
+						placeholder='Add description'
 						required
 					></textarea>
 				</div>
 				<div className='add-category-price'>
 					<div className='add-category flex-col'>
-						<p>Loại sản phẩm</p>
+						<p>Product Category</p>
 						<select onChange={onChangeHandler} name='category'>
 							<option value='Burger'>Burger</option>
-							<option value='Burger1'>Burger1</option>
-							<option value='Burger2'>Burger2</option>
-							<option value='Burger3'>Burger3</option>
-							<option value='Burger4'>Burger4</option>
-							<option value='Burger5'>Burger5</option>
-							<option value='Burger6'>Burger6</option>
-							<option value='Burger7'>Burger7</option>
+							<option value='Combo'>Combo</option>
+							<option value='Fried Chiken'>Fried Chiken</option>
+							<option value='King Rice'>King Rice</option>
+							<option value='Pasta'>Pasta</option>
+							<option value='Happy Snacks'>Happy Snacks</option>
+							<option value='Drink'>Drink</option>
+							<option value='Dessert'>Dessert</option>
 						</select>
 					</div>
 					<div className='add-price flex-col'>
-						<p>Giá sản phẩm</p>
+						<p>Product Price</p>
 						<input
 							onChange={onChangeHandler}
 							value={data.price}
 							type='Number'
 							name='price'
-							placeholder='20000VND'
+							placeholder='USD Price'
 						/>
 					</div>
 				</div>
 				<button type='submit' className='add-btn'>
-					Thêm
+					Add
 				</button>
 			</form>
 		</div>

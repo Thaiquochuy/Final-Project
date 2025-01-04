@@ -72,3 +72,29 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+.password-input {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-input input {
+    width: 100%;
+    padding-right: 40px; /* Để dành chỗ cho nút Show/Hide */
+    box-sizing: border-box;
+}
+
+.password-input button {
+    position: absolute;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 14px;
+}
+
+.password-input button:hover {
+    text-decoration: underline;
+}

@@ -8,7 +8,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const placeOrder= async (req, res) => {
 
-//const frontend_url = "http://localhost:5173"; 
 const frontend_url = "http://localhost:5174";
 
     try {
@@ -23,7 +22,7 @@ const frontend_url = "http://localhost:5174";
         
         const line_items = req.body.items.map((item) => ({
                 price_data: {
-                    currency: "inr",
+                    currency: "usd",
                     product_data:
                     {
                         name: item.name
@@ -35,11 +34,11 @@ const frontend_url = "http://localhost:5174";
 
             line_items.push({
                 price_data: {
-                    currency: "inr",
+                    currency: "usd",
                     product_data: {
-                        name: "Đang giao hàng"  
+                        name: "Being delivered"  
                     },
-                    unit_amount: 2*100*80
+                    unit_amount: 2*100*8
                 },
                 quantity:1 
             })
@@ -48,14 +47,14 @@ const frontend_url = "http://localhost:5174";
                 line_items: line_items,
                 mode : 'payment',
                 success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-                cancel_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
+                cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
             })
 
             res.json({success:true, session_url:session.url})
 
     } catch (error) {
         console.log(error);
-        res.json({success:false, message:"Đặt hàng thất bại"});
+        res.json({success:false, message:"Order failed"});
     }
 }
 
@@ -65,15 +64,15 @@ const verifyOrder = async (req, res) => {
     try {
         if(success=="true"){
             await orderModel.findByIdAndUpdate(orderId, {payment: true})
-            res.json({success:true, message:"Thanh toán thành công"})
+            res.json({success:true, message:"Payment successful"})
     }
     else{
         await orderModel.findByIdAndDelete(orderId);
-        res.json({success:false, message:"Thanh toán thất bại"})  
+        res.json({success:false, message:"Payment failed"})  
     }
     } catch (error) {
         console.log(error);
-        res.json({success:false, message:"Có lỗi xảy ra"});
+        res.json({success:false, message:"An error occurred"});
     }
 
 }
@@ -85,7 +84,7 @@ const userOrders = async (req, res) => {
         res.json({success:true, data:orders});
     } catch (error) {
         console.log(error);
-        res.json({success:false, message:"Có lỗi xảy ra"});
+        res.json({success:false, message:"An error occurred"});
     }
 }
 
@@ -96,7 +95,7 @@ const listorders = async (req, res) => {
         res.json({success:true, data:orders});
     } catch (error) {
         console.log(error);
-        res.json({success:false, message:"Có lỗi xảy ra"});
+        res.json({success:false, message:"An error occurred"});
     }
 }
 
@@ -104,10 +103,11 @@ const listorders = async (req, res) => {
 const updateStatus = async (req, res) => {
     try {
         await orderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status});
-        res.json({success:true, message:"Cập nhật thành công"});
+        res.json({success:true, message:"Update successful"});
     } catch (error) {
         console.log(error);
-        res.json({success:false, message:"Có lỗi xảy ra"});
+        res.json({success:false, message:"An error occurred"});
     }
 }
+
 export {placeOrder, verifyOrder, userOrders, listorders,updateStatus};

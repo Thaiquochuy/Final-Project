@@ -12,6 +12,7 @@ const LoginPopup = ({ setShowLogin }) => {
 		name: '',
 		email: '',
 		password: '',
+		showPassword: false
 	});
 
 	const onChangeHandler = (event) => {
@@ -20,13 +21,17 @@ const LoginPopup = ({ setShowLogin }) => {
 		setData((data) => ({ ...data, [name]: value }));
 	};
 
+	const togglePasswordVisibility = () => {
+		setData((prevState) => ({ ...prevState, showPassword: !prevState.showPassword }));
+	};
+
 	const onLogin = async (event) => {
 		event.preventDefault();
 		let newUrl = url;
 		if (currState === 'Login') {
-			newUrl += '/api/user/dangnhap';
+			newUrl += '/api/user/Login';
 		} else {
-			newUrl += '/api/user/dangki';
+			newUrl += '/api/user/Register';
 		}
 
 		const response = await axios.post(newUrl, data);
@@ -73,14 +78,19 @@ const LoginPopup = ({ setShowLogin }) => {
 						placeholder='Your Email'
 						required
 					/>
-					<input
-						name='password'
-						onChange={onChangeHandler}
-						value={data.password}
-						type='password'
-						placeholder='Password'
-						required
-					/>
+					<div className="password-input">
+						<input
+							name='password'
+							onChange={onChangeHandler}
+							value={data.password}
+							type={data.showPassword ? 'text' : 'password'}
+							placeholder='Password'
+							required
+						/>
+						<button type="button" onClick={togglePasswordVisibility}>
+							{data.showPassword ? 'Hide' : 'Show'}
+						</button>
+					</div>
 				</div>
 				<button type='submit'>
 					{currState === 'Sign Up' ? 'Create Account' : 'Login'}

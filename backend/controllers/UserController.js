@@ -10,18 +10,18 @@ const loginUser = async (req, res) => {
         const user = await userModel.findOne({ email });
 
         if (!user) {
-            return res.json({ success: false, message: "Email không tồn tại" });
+            return res.json({ success: false, message: "Email does not exist" });
         }
         const isMatch = await bcrypt.compare(password, user.password);
         
         if (!isMatch) {
-            return res.json({ success: false, message: "Mật khẩu không chính xác" });
+            return res.json({ success: false, message: "Incorrect password" });
         }
         const token = createToken(user._id);
         res.json({ success: true, token });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Có lỗi xảy ra, vui lòng thử lại sau" });
+        res.json({ success: false, message: "An error occurred, please try again later" });
     }
 }
 
@@ -36,14 +36,14 @@ const registerUser = async (req, res) => {
     try {
         const exists = await userModel.findOne({ email });
         if (exists){
-            return res.json({ success: false, message: "Email đã tồn tại" });
+            return res.json({ success: false, message: "Email already exists" });
         } 
         //Hàm kiểm tra độ dài của password và tính hợp lệ của email
         if (password.length < 6) {
-            return res.json({ success: false, message: "Mật khẩu phải có ít nhất 6 kí tự" });
+            return res.json({ success: false, message: "Password must be at least 6 characters long" });
         }
         if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Email không hợp lệ" });
+            return res.json({ success: false, message: "Invalid email" });
         }
         //Mã hóa password
         const salt = await bcrypt.genSalt(10)
@@ -62,7 +62,7 @@ const registerUser = async (req, res) => {
         res.json({ success: true, token });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Có lỗi xảy ra, vui lòng thử lại sau" });
+        res.json({ success: false, message: "An error occurred, please try again later" });
     }
 }
 
