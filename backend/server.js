@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { DBconnect } from "./config/db.js"
-import foodRouter from "./routes/FoodRoute.js"
+import foodRouter from "./routes/foodRoute.js"
 import 'dotenv/config'
 import userRouter from "./routes/userRoute.js"
 import cartRouter from "./routes/cartRoute.js"

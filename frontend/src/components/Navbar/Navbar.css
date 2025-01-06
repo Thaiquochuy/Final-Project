@@ -98,6 +98,21 @@
     color: rgb(228, 105, 83);
 }
 
+.language-toggle {
+    background: transparent;
+    font-size: 16px;
+    color: #49557e;
+    padding: 10px 20px;
+    border: 1px solid #49557e;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.language-toggle:hover {
+    background-color: #d9d6d9;
+}
+
 @media (max-width: 1050px){
     .navbar .logo{
         width: 140px;

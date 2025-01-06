@@ -48,7 +48,7 @@ const Order = ({ url }) => {
 				{orders.map((order, index) => (
 					<div key={index} className='order-item'>
 						<img src={assets.parcel_icon} alt='' />
-						<div>
+						<div className='text-item'>
 							<p className='order-item-food'>
 								{order.items.map((item, index) => (
 									<span key={index}>

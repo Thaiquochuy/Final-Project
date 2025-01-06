@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './List.css';
-import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const List = ({ url }) => {
 	const [list, setList] = useState([]);
+	const [formData, setFormData] = useState({ name: '', category: '', price: '' });
+	const [editingId, setEditingId] = useState(null);
 
 	const fetchList = async () => {
 		const response = await axios.get(`${url}/api/food/list`);
@@ -15,6 +16,33 @@ const List = ({ url }) => {
 		} else {
 			toast.error('Error fetching food list');
 		}
+	};
+
+	const editFood = async (foodId, updatedData) => {
+		const response = await axios.post(`${url}/api/food/edit`, { id: foodId, ...updatedData });
+		await fetchList();
+		if (response.data.success) {
+			toast.success(response.data.message);
+		} else {
+			toast.error('Error editing food');
+		}
+	};
+
+	const handleEditClick = (food) => {
+		setFormData({ name: food.name, category: food.category, price: food.price });
+		setEditingId(food._id);
+	};
+
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+	};
+
+	const handleFormSubmit = (e) => {
+		e.preventDefault();
+		editFood(editingId, formData);
+		setEditingId(null);
+		setFormData({ name: '', category: '', price: '' });
 	};
 
 	const removeFood = async (foodId) => {
@@ -34,6 +62,32 @@ const List = ({ url }) => {
 	return (
 		<div className='list add flex-col'>
 			<p className='text_list'>All List</p>
+			{editingId && (
+				<form onSubmit={handleFormSubmit} className='edit-form'>
+					<input
+						type='text'
+						name='name'
+						value={formData.name}
+						onChange={handleInputChange}
+						placeholder='Name'
+					/>
+					<input
+						type='text'
+						name='category'
+						value={formData.category}
+						onChange={handleInputChange}
+						placeholder='Category'
+					/>
+					<input
+						type='text'
+						name='price'
+						value={formData.price}
+						onChange={handleInputChange}
+						placeholder='Price'
+					/>
+					<button type='submit' className='save-btn'>Save</button>
+				</form>
+			)}
 			<div className='list-table'>
 				<div className='list-table-format title'>
 					<b>Image</b>
@@ -52,6 +106,9 @@ const List = ({ url }) => {
 							<div className='list-table-format-act'>
 								<p onClick={() => removeFood(item._id)} className='btn'>
 									x
+								</p>
+								<p onClick={() => handleEditClick(item)} className='btn'>
+									Edit
 								</p>
 							</div>
 						</div>

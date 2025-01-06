@@ -14,18 +14,15 @@
     font-weight: 800;
 }
 
-.order-item-name{
-    margin-top:15px;
-    margin-bottom: 5px;
+.text-item{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.order-item-address{
-    margin-bottom: 15px;
-}
-
-.order-item-select{
-    background-color: #ffe8e4;
-    border: 2px solid tomato;
+.order-item select{
+    background-color: #fbf6f6;
+    border: 2px solid rgb(247, 71, 40);
     width: max(10vw,120px);
     padding: 10px;
     outline:none;
@@ -37,7 +34,7 @@
         grid-template-columns: 0.5fr 2fr 1fr;
         padding: 15px 8px;
     }
-    .order-item-select{
+    .order-item select{
         padding: 5px;
         font-size: 12px;
     }
