@@ -5,9 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 import Add from './Pages/Add/Add';
 import List from './Pages/List/List';
 import Order from './Pages/Order/Order';
+import UserList from './Pages/Userlist/UserList';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PropTypes from 'prop-types';
 
 function App() {
 	const url = 'http://localhost:4000';
@@ -23,6 +23,7 @@ function App() {
 					<Route path='/Add' element={<Add url={url} />} />
 					<Route path='/List_Product' element={<List url={url} />} />
 					<Route path='/Order' element={<Order url={url} />} />
+					<Route path='/UserList' element={<UserList url ={url}/>} />
 				</Routes>
 			</div>
 		</div>

@@ -23,7 +23,7 @@ DBconnect();
 //API EPs
 app.use("/api/food",foodRouter)
 app.use("/images",express.static('uploads'))
-app.use("/api/user",userRouter)
+app.use("/api/user", userRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
 
@@ -34,11 +34,3 @@ app.get("/",(req,res)=>{
 app.listen(port,()=>{
     console.log(`Server Started on http://localhost:${port}`)
 })
-
-
-
-//Đường dẫn
-//mongodb+srv://tam:215052015@cluster0.yhdgb.mongodb.net/?
-
-
-//TEST THỬ
