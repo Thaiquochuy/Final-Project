@@ -8,19 +8,6 @@ const ExploreMenu = ({ category, setCategory }) => {
     const menuRef = useRef(null);
     const { language } = useLanguage(); // Lấy ngôn ngữ từ context
 
-    useEffect(() => {
-        const scrollInterval = setInterval(() => {
-            if (menuRef.current) {
-                menuRef.current.scrollBy({
-                    left: 100, // Amount to scroll by (adjust as needed)
-                    behavior: 'smooth',
-                });
-            }
-        }, 3000); // Scroll every 3 seconds
-
-        return () => clearInterval(scrollInterval); // Cleanup the interval on component unmount
-    }, []);
-
     // Định nghĩa nội dung cho cả hai ngôn ngữ
     const content = {
         en: {

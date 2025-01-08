@@ -70,6 +70,14 @@
         overflow-x: auto;  /* Show horizontal scrollbar when width is smaller than 1050px */
     }
 
+    .explore-menu-list-item img{
+        width: 7vw;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: 0.2s;
+        height: auto;
+    }
+
     .explore-menu-list::-webkit-scrollbar {
         display: block;
         height: 8px;

@@ -5,8 +5,7 @@
     margin: 30px auto;
     background-image: url(img_header.png);
     background-position: center;
-    /*position: relative;*/
-    overflow: hidden; /* Prevent content overflow */
+    overflow: hidden;
  }
 
 .header-contents{
